@@ -1,5 +1,11 @@
+import Loader from "@/components/loader";
+
 const Loading = () => {
-  return <span>Carregando</span>;
+  return (
+    <div className="flex items-center justify-center">
+      <Loader />
+    </div>
+  );
 };
 
 export default Loading;
