@@ -12,7 +12,7 @@ const Header = ({ numberOfItems }: HeaderProps) => {
         <Link className="font-bold text-xl" href="/">
           WeMovies
         </Link>
-        <Link href="/cart" className="flex text-end items-center gap-2">
+        <Link href="/carrinho" className="flex text-end items-center gap-2">
           <div className="flex flex-col">
             <div className="hidden lg:flex">Meu Carrinho</div>
             <div className="text-[#999999] font-semibold text-xs">
