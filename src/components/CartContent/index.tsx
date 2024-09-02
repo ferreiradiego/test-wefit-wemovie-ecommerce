@@ -27,8 +27,8 @@ const CartContent = ({}: CartContentProps) => {
     const success = await checkout(products);
 
     if (success) {
-      clearCart();
       router.push("/compra-realizada");
+      clearCart();
     }
   };
 
