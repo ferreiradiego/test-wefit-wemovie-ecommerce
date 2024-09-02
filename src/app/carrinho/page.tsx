@@ -1,11 +1,15 @@
+"use client";
+
 import CartContent from "@/components/CartContent";
+import { CartContext } from "@/context/cart";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 
 const Cart = () => {
-  const quantityInCart: number = 1;
+  const { cartIsEmpty } = useContext(CartContext);
 
-  if (quantityInCart == 0) {
+  if (cartIsEmpty) {
     return (
       <div className="bg-white rounded flex flex-col p-16 gap-6 items-center">
         <h1 className="text-xl text-center font-bold text-[#2F2E41] tracking-normal leading-none">

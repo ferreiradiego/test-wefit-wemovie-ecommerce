@@ -1,6 +1,6 @@
 import AddCartIcon from "../icons/AddCartIcon";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   variant?: "primary" | "secondary" | "success";
   label?: string | number;
@@ -18,9 +18,15 @@ const getBackgroundColor = (variant: ButtonProps["variant"]) => {
   }
 };
 
-const Button = ({ text, variant = "primary", label = 0 }: ButtonProps) => {
+const Button = ({
+  text,
+  variant = "primary",
+  label = 0,
+  ...props
+}: ButtonProps) => {
   return (
     <button
+      {...props}
       className={`uppercase gap-3 font-bold text-xs text-white w-full h-[40px] flex items-center justify-center rounded-[4px] ${getBackgroundColor(
         variant
       )}`}

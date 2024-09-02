@@ -1,38 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useContext } from "react";
 import { useRouter } from "next/navigation";
-import DeleteIcon from "../icons/DeleteIcon";
-import MinusIcon from "../icons/MinusIcon";
-import PlusIcon from "../icons/PlusIcon";
-import Image from "next/image";
 import { formatCurrency } from "@/utils/price";
+import { CartContext } from "@/context/cart";
+import CartContentItem from "./CartContentItem";
+import { checkout } from "@/actions/checkout";
 
 interface CartContentProps {}
 
 const CartContent = ({}: CartContentProps) => {
   const router = useRouter();
-  const [quantityInCart, setQuantityInCart] = useState(0);
+  const { products, totalPrice, clearCart } = useContext(CartContext);
 
-  const handleDecreaseQuantityClick = () => {
-    // decreaseProductQuantity(cartProduct.id);
-    if (quantityInCart === 0) return;
-    setQuantityInCart(quantityInCart - 1);
-  };
+  const handleCheckout = async () => {
+    const success = await checkout(products);
 
-  const handleIncreaseQuantityClick = () => {
-    // increaseProductQuantity(cartProduct.id);
-    setQuantityInCart(quantityInCart + 1);
-  };
-
-  const handleRemoveProductClick = () => {
-    // removeProductFromCart(cartProduct.id);
-    console.log("Product removed from cart");
-  };
-
-  const handleCheckout = () => {
-    console.log("Checkout clicked");
-    router.push("/compra-realizada");
+    if (success) {
+      clearCart();
+      router.push("/compra-realizada");
+    }
   };
 
   return (
@@ -43,45 +30,10 @@ const CartContent = ({}: CartContentProps) => {
         <span>SUBTOTAL</span>
       </div>
 
-      <div className="flex flex-row gap-4">
-        <div className="relative min-w-[64px] h-[82px]">
-          <Image
-            src="https://wefit-react-web-test.s3.amazonaws.com/spider-man.png"
-            alt="Spider Man"
-            fill={true}
-          />
-        </div>
-        <div className="text-[#2F2E41] font-bold flex flex-col gap-4">
-          <div className="text-[#2F2E41] font-bold gap-4 flex flex-row items-center justify-center text-sm">
-            <div className="text-wrap">Homem Aranha</div>
-            <div>{formatCurrency(29.99)}</div>
-            <button>
-              <DeleteIcon width={16} height={18} />
-            </button>
-          </div>
+      {products.map((product) => (
+        <CartContentItem key={product.id} cartProduct={product} />
+      ))}
 
-          <div className="flex gap-4">
-            <div className="flex items-center text-center gap-[11px] w-[117px]">
-              <button onClick={handleDecreaseQuantityClick}>
-                <MinusIcon />
-              </button>
-              <span className="block text-sm h-[26px] border-[#D9D9D9] border rounded w-full text-[#2F2E41] font-normal text-center">
-                {quantityInCart}
-              </span>
-              <button onClick={handleIncreaseQuantityClick}>
-                <PlusIcon />
-              </button>
-            </div>
-
-            <div className="flex flex-col text-end">
-              <span className="text-[#999999] text-xs uppercase lg:hidden">
-                SUBTOTAL
-              </span>
-              <span>{formatCurrency(quantityInCart * 29.99)}</span>
-            </div>
-          </div>
-        </div>
-      </div>
       <hr className="bg-[#999999] h-[1px]" />
 
       <div className="flex justify-between flex-col-reverse lg:flex-row gap-4">
@@ -94,7 +46,7 @@ const CartContent = ({}: CartContentProps) => {
         <div className="flex items-center gap-[5px] justify-between">
           <span className="text-[#999999] font-bold text-sm">TOTAL</span>
           <span className="text-2xl text-[#2F2E41] font-bold">
-            {formatCurrency(0)}
+            {formatCurrency(totalPrice)}
           </span>
         </div>
       </div>
@@ -108,7 +60,7 @@ const CartContent = ({}: CartContentProps) => {
     //     </div>
     //     <Button
     //       label={quantityInCart}
-    //       variant={quantityInCart > 0 ? "success" : "primary"}
+    //       variant={quantity> 0 ? "success" : "primary"}
     //     />
     //   </div>
     // </div>

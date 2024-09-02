@@ -1,11 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import CartDetails from "./CartDetails";
 
-interface HeaderProps {
-  numberOfItems: number;
-}
-
-const Header = ({ numberOfItems }: HeaderProps) => {
+const Header = () => {
   return (
     <header className="w-full h-[88px]">
       <nav className="flex items-center justify-between mx-4 lg:mx-[180px] py-6">
@@ -13,12 +10,7 @@ const Header = ({ numberOfItems }: HeaderProps) => {
           WeMovies
         </Link>
         <Link href="/carrinho" className="flex text-end items-center gap-2">
-          <div className="flex flex-col">
-            <div className="hidden lg:flex">Meu Carrinho</div>
-            <div className="text-[#999999] font-semibold text-xs">
-              {numberOfItems} itens
-            </div>
-          </div>
+          <CartDetails />
           <Image
             src="assets/cart-icon.svg"
             alt="Carrinho"
