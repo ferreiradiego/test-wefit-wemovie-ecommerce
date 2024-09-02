@@ -1,10 +1,11 @@
 import Spinner from "../Spinner";
+import { SpinnerContainer } from "./styles";
 
 const Loader = () => {
   return (
-    <div className="w-[83px] h-[83px]flex items-center justify-center">
+    <SpinnerContainer>
       <Spinner />
-    </div>
+    </SpinnerContainer>
   );
 };
 

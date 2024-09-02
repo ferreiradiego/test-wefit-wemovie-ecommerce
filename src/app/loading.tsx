@@ -1,10 +1,11 @@
-import Loader from "@/components/loader";
+import Loader from "@/components/Loader";
+import { FlexContainer } from "./styles";
 
 const Loading = () => {
   return (
-    <div className="flex items-center justify-center">
+    <FlexContainer>
       <Loader />
-    </div>
+    </FlexContainer>
   );
 };
 

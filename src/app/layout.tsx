@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import CartProvider from "@/context/cart";
-
-const openSans = Open_Sans({ subsets: ["latin"] });
+import StyledComponentsRegistry from "@/lib/registry";
+import GlobalStyles from "@/styles/GlobalStyles";
 
 export const metadata: Metadata = {
   title: "Teste Front React WeFit",
@@ -18,11 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={openSans.className}>
-        <CartProvider>
-          <Header />
-          <main className="lg:mx-[180px] mx-4">{children}</main>
-        </CartProvider>
+      <body>
+        <StyledComponentsRegistry>
+          <GlobalStyles />
+          <CartProvider>
+            <Header />
+            <main>{children}</main>
+          </CartProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

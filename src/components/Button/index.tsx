@@ -1,22 +1,6 @@
 import AddCartIcon from "../icons/AddCartIcon";
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string;
-  variant?: "primary" | "secondary" | "success";
-  label?: string | number;
-}
-
-const getBackgroundColor = (variant: ButtonProps["variant"]) => {
-  switch (variant) {
-    case "primary":
-    default:
-      return "bg-[#009EDD]";
-    case "secondary":
-      return "bg-[#0073A1]";
-    case "success":
-      return "bg-[#039B00]";
-  }
-};
+import { Label, LabelContainer, StyledButton } from "./styles";
+import { ButtonProps } from "./types";
 
 const Button = ({
   text,
@@ -25,18 +9,13 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button
-      {...props}
-      className={`uppercase gap-3 font-bold text-xs text-white w-full h-[40px] flex items-center justify-center rounded-[4px] ${getBackgroundColor(
-        variant
-      )}`}
-    >
-      <div className="text-center flex font-normal">
+    <StyledButton {...props} variant={variant}>
+      <LabelContainer>
         <AddCartIcon />
-        <span className="ml-[3px]">{label}</span>
-      </div>
+        <Label>{label}</Label>
+      </LabelContainer>
       {text}
-    </button>
+    </StyledButton>
   );
 };
 

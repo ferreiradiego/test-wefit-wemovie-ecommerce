@@ -6,6 +6,13 @@ import { formatCurrency } from "@/utils/price";
 import Button from "../Button";
 import { useContext } from "react";
 import { CartContext } from "@/context/cart";
+import {
+  CardContainer,
+  CardContent,
+  CardDetails,
+  Price,
+  Title,
+} from "./styles";
 
 interface MovieCardProps {
   movie: Movie;
@@ -31,21 +38,21 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   };
 
   return (
-    <div className="bg-white flex flex-col p-4 rounded">
-      <div className="flex flex-col gap-2">
-        <div className="flex flex-col gap-2 justify-center items-center font-bold text-center">
+    <CardContainer>
+      <CardContent>
+        <CardDetails>
           <Image src={movie.image} alt={movie.title} width={200} height={300} />
-          <p className="text-[#333333]">{movie.title}</p>
-          <p className="text-[#2F2E41]">{formatCurrency(movie.price)}</p>
-        </div>
+          <Title>{movie.title}</Title>
+          <Price>{formatCurrency(movie.price)}</Price>
+        </CardDetails>
         <Button
           text="adicionar ao carrinho"
           label={quantityInCart}
           variant={isMovieAlreadyOnCart ? "success" : "primary"}
           onClick={addProductToCartClick}
         />
-      </div>
-    </div>
+      </CardContent>
+    </CardContainer>
   );
 };
 

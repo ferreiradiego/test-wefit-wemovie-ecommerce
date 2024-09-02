@@ -1,15 +1,14 @@
-import Image from "next/image";
+import { SpinnerAnimate } from "./styles";
 
 const Spinner = () => {
   return (
-    <Image
+    <SpinnerAnimate
       src="/assets/load-spinner.png"
       alt="Carregando..."
       quality={100}
       width={62}
       height={62}
       priority={true}
-      className="animate-spin"
       color="#fff"
     />
   );

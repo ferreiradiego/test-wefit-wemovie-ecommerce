@@ -4,8 +4,18 @@ import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { formatCurrency } from "@/utils/price";
 import { CartContext } from "@/context/cart";
-import CartContentItem from "./CartContentItem";
 import { checkout } from "@/actions/checkout";
+import {
+  CheckoutButton,
+  Container,
+  Divider,
+  Footer,
+  Header,
+  TotalAmount,
+  TotalContainer,
+  TotalLabel,
+} from "./styles";
+import CartContentItem from "./CartContentItem";
 
 interface CartContentProps {}
 
@@ -23,47 +33,29 @@ const CartContent = ({}: CartContentProps) => {
   };
 
   return (
-    <div className="bg-white flex flex-col p-6 gap-6">
-      <div className="text-[#999999] font-bold text-sm lg:flex justify-between hidden">
+    <Container>
+      <Header>
         <span>PRODUTO</span>
         <span>QTD</span>
         <span>SUBTOTAL</span>
-      </div>
+      </Header>
 
       {products.map((product) => (
         <CartContentItem key={product.id} cartProduct={product} />
       ))}
 
-      <hr className="bg-[#999999] h-[1px]" />
+      <Divider />
 
-      <div className="flex justify-between flex-col-reverse lg:flex-row gap-4">
-        <button
-          className="uppercase bg-[#009EDD] font-bold text-xs rounded-[4px] p-2"
-          onClick={handleCheckout}
-        >
+      <Footer>
+        <CheckoutButton onClick={handleCheckout}>
           Finalizar pedido
-        </button>
-        <div className="flex items-center gap-[5px] justify-between">
-          <span className="text-[#999999] font-bold text-sm">TOTAL</span>
-          <span className="text-2xl text-[#2F2E41] font-bold">
-            {formatCurrency(totalPrice)}
-          </span>
-        </div>
-      </div>
-    </div>
-    // <div className="bg-white flex flex-col p-4">
-    //   <div className="flex flex-col bg-red-100 gap-2">
-    //     <div className="flex flex-col gap-2 justify-center items-center font-bold text-center">
-    //       <Image src={movie.image} alt={movie.title} width={200} height={300} />
-    //       <p className="text-black">{movie.title}</p>
-    //       <p className="text-black">{`${formatCurrency(movie.price)}`}</p>
-    //     </div>
-    //     <Button
-    //       label={quantityInCart}
-    //       variant={quantity> 0 ? "success" : "primary"}
-    //     />
-    //   </div>
-    // </div>
+        </CheckoutButton>
+        <TotalContainer>
+          <TotalLabel>TOTAL</TotalLabel>
+          <TotalAmount>{formatCurrency(totalPrice)}</TotalAmount>
+        </TotalContainer>
+      </Footer>
+    </Container>
   );
 };
 
