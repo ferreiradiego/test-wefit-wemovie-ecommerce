@@ -1,4 +1,3 @@
-import CartContent from "@/components/CartContent";
 import MovieCard from "@/components/MovieCard";
 import { Movie } from "@/types/movie";
 

@@ -1,7 +1,7 @@
 import { Movie } from "@/types/movie";
-import Button from "./Button";
 import Image from "next/image";
 import { formatCurrency } from "@/utils/price";
+import Button from "../Button";
 
 interface MovieCardProps {
   movie: Movie;

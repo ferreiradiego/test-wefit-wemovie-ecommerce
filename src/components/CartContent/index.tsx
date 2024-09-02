@@ -1,14 +1,12 @@
 "use client";
 
-import { Movie } from "@/types/movie";
-import Button from "./Button";
-import Image from "next/image";
-import { formatCurrency } from "@/utils/price";
-import DeleteIcon from "./icons/DeleteIcon";
-import MinusIcon from "./icons/MinusIcon";
-import PlusIcon from "./icons/PlusIcon";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import DeleteIcon from "../icons/DeleteIcon";
+import MinusIcon from "../icons/MinusIcon";
+import PlusIcon from "../icons/PlusIcon";
+import Image from "next/image";
+import { formatCurrency } from "@/utils/price";
 
 interface CartContentProps {}
 
@@ -76,7 +74,9 @@ const CartContent = ({}: CartContentProps) => {
             </div>
 
             <div className="flex flex-col text-end">
-              <span className="text-[#999999] text-xs uppercase lg:hidden">SUBTOTAL</span>
+              <span className="text-[#999999] text-xs uppercase lg:hidden">
+                SUBTOTAL
+              </span>
               <span>{formatCurrency(quantityInCart * 29.99)}</span>
             </div>
           </div>

@@ -1,5 +1,4 @@
-import Image from "next/image";
-import AddCartIcon from "./icons/AddCartIcon";
+import AddCartIcon from "../icons/AddCartIcon";
 
 interface ButtonProps {
   text: string;
@@ -27,13 +26,6 @@ const Button = ({ text, variant = "primary", label = 0 }: ButtonProps) => {
       )}`}
     >
       <div className="text-center flex font-normal">
-        {/* <Image
-          src="/assets/add-cart-icon.svg"
-          alt="Carrinho"
-          width={13.6}
-          height={13.6}
-          className="mr-[3px]"
-        /> */}
         <AddCartIcon />
         <span className="ml-[3px]">{label}</span>
       </div>
