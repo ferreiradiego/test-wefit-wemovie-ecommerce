@@ -11,16 +11,16 @@ const GlobalStyles = createGlobalStyle`
     color: #fff;
     background: var(--background);
     font-family: "Open Sans", sans-serif;
+
+    padding-bottom: 40px;
+    
+    @media (min-width: 1440px) {
+      padding-inline: 180px;
+    }
   }
 
   main {
-    margin-left: 16px;
-    margin-right: 16px;
-
-    @media (min-width: 1024px) {
-      margin-left: 180px;
-      margin-right: 180px;
-    }
+    padding-inline: 16px;
   }
 
 `;

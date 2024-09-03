@@ -3,7 +3,6 @@
 import CartContent from "@/components/CartContent";
 import { CartContext } from "@/context/cart";
 import Image from "next/image";
-import Link from "next/link";
 import { useContext } from "react";
 import {
   EmptyCartContainer,

@@ -18,7 +18,6 @@ const Message = styled.h1`
   text-align: center;
   font-weight: bold;
   color: #2f2e41;
-  tracking-normal: normal;
   line-height: normal;
 `;
 
@@ -38,6 +37,11 @@ const BackLink = styled(Link)`
   align-items: center;
   justify-content: center;
   width: 157px;
+  transition: background-color 300ms ease-out;
+  
+  &:hover {
+    background-color: #0073a1;
+  }
 `;
 
 export { Container, Message, ImageWrapper, BackLink };

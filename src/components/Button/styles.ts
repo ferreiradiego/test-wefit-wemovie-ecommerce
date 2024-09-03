@@ -1,15 +1,23 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { ButtonProps } from "./types";
 
 const getBackgroundColor = (variant: ButtonProps["variant"]) => {
   switch (variant) {
+    case "success":
+      return "#039B00";
     case "primary":
     default:
       return "#009EDD";
-    case "secondary":
-      return "#0073A1";
+  }
+};
+
+const getHoverBackgroundColor = (variant: ButtonProps["variant"]) => {
+  switch (variant) {
     case "success":
       return "#039B00";
+    case "primary":
+    default:
+      return "#0073A1";
   }
 };
 
@@ -26,6 +34,11 @@ const StyledButton = styled.button<{ variant: ButtonProps["variant"] }>`
   justify-content: center;
   border-radius: 4px;
   background-color: ${({ variant }) => getBackgroundColor(variant)};
+  transition: background-color 300ms ease-out;
+
+  &:hover {
+    background-color: ${({ variant }) => getHoverBackgroundColor(variant)};
+  }
 `;
 
 const LabelContainer = styled.div`

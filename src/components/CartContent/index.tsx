@@ -8,14 +8,17 @@ import { checkout } from "@/actions/checkout";
 import {
   CheckoutButton,
   Container,
+  DeleteButton,
   Divider,
   Footer,
   Header,
+  HeaderItem,
   TotalAmount,
   TotalContainer,
   TotalLabel,
 } from "./styles";
 import CartContentItem from "./CartContentItem";
+import styled from "styled-components";
 
 interface CartContentProps {}
 
@@ -35,9 +38,10 @@ const CartContent = ({}: CartContentProps) => {
   return (
     <Container>
       <Header>
-        <span>PRODUTO</span>
-        <span>QTD</span>
-        <span>SUBTOTAL</span>
+        <HeaderItem>PRODUTO</HeaderItem>
+        <HeaderItem>QTD</HeaderItem>
+        <HeaderItem>SUBTOTAL</HeaderItem>
+        <DeleteButton />
       </Header>
 
       {products.map((product) => (

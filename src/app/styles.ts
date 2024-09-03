@@ -6,6 +6,7 @@ const FlexContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 `;
 
 const GridContainer = styled.div`
@@ -17,7 +18,7 @@ const GridContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     grid-template-columns: repeat(3, 1fr);
   }
 `;

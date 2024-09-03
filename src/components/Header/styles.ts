@@ -2,40 +2,55 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const dissolve = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
 
 const HeaderContainer = styled.header`
   width: 100%;
   height: 88px;
-`;
 
-const Nav = styled.nav`
+  padding: 24px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 16px;
-  padding: 24px 0;
-
-  @media (min-width: 1024px) {
-    margin: 0 180px;
-  }
 `;
 
 const LogoLink = styled(Link)`
-  font-weight: bold;
-  font-size: 1.25rem;
+  width: 101.94px;
+  height: 25px;
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 27.24px;
+  text-align: left;
 `;
 
-const CartLink = styled(Link)`
+const CartLink = styled(Link)<{ disabled?: boolean }>`
   display: flex;
   align-items: center;
   gap: 8px;
-  text-align: end;
+  animation: ${dissolve} 300ms ease-out;
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      pointer-events: none;
+    `}
 `;
 
 const CartIcon = styled(Image)`
-  cursor: pointer;
-  height: 21px;
+  width: 40px;
+  height: 40px;
+
+  padding: 8px 0px 0px 0px;
 `;
 
-export { HeaderContainer, Nav, LogoLink, CartLink, CartIcon };
+export { HeaderContainer, LogoLink, CartLink, CartIcon };

@@ -4,7 +4,7 @@ import Image from "next/image";
 import styled from "styled-components";
 
 export const SpinnerAnimate = styled(Image)`
-  animation: spin 1s linear infinite;
+  animation: spin 2s linear infinite;
   color: #fff;
 
   @keyframes spin {

@@ -19,7 +19,7 @@ const fetchData = async (): Promise<Array<Movie> | null> => {
 const Home = async () => {
   const movies = await fetchData();
   // await new Promise((resolve) => setTimeout(resolve, 1000));
-  console.log(movies);
+  // console.log(movies);
 
   if (!movies) {
     return (

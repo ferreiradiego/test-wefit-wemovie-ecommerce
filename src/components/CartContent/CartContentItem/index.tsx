@@ -9,15 +9,21 @@ import MinusIcon from "@/components/icons/MinusIcon";
 import PlusIcon from "@/components/icons/PlusIcon";
 import {
   Container,
+  ContainerDesktop,
   Details,
   ImageWrapper,
+  ProductDetailsDesktop,
+  ProductDetailsMobile,
+  ProductPrice,
   Quantity,
   QuantityControl,
   QuantityWrapper,
   SubtotalLabel,
+  SubTotalValue,
   SubtotalWrapper,
   Title,
-  TitlePriceWrapper,
+  TitlePriceDesktopWrapper,
+  TitlePriceMobileWrapper,
 } from "./styles";
 
 interface CartContentItemProps {
@@ -25,8 +31,6 @@ interface CartContentItemProps {
 }
 
 const CartContentItem = ({ cartProduct }: CartContentItemProps) => {
-  // console.log(cartProduct);
-
   const {
     decreaseProductQuantity,
     increaseProductQuantity,
@@ -48,18 +52,30 @@ const CartContentItem = ({ cartProduct }: CartContentItemProps) => {
 
   return (
     <Container>
-      <ImageWrapper>
-        <Image src={cartProduct.image} alt={cartProduct.title} fill={true} />
-      </ImageWrapper>
+      <ProductDetailsMobile>
+        <ImageWrapper>
+          <Image src={cartProduct.image} alt={cartProduct.title} fill={true} />
+        </ImageWrapper>
+      </ProductDetailsMobile>
+
+      <ProductDetailsDesktop>
+        <ImageWrapper>
+          <Image src={cartProduct.image} alt={cartProduct.title} fill={true} />
+        </ImageWrapper>
+        <TitlePriceDesktopWrapper>
+          <Title>{cartProduct.title}</Title>
+          <ProductPrice>{formatCurrency(cartProduct.price)}</ProductPrice>
+        </TitlePriceDesktopWrapper>
+      </ProductDetailsDesktop>
 
       <Details>
-        <TitlePriceWrapper>
+        <TitlePriceMobileWrapper>
           <Title>{cartProduct.title}</Title>
-          <div>{formatCurrency(cartProduct.price)}</div>
+          <ProductPrice>{formatCurrency(cartProduct.price)}</ProductPrice>
           <button onClick={handleRemoveProductClick}>
             <DeleteIcon width={16} height={18} />
           </button>
-        </TitlePriceWrapper>
+        </TitlePriceMobileWrapper>
 
         <QuantityWrapper>
           <QuantityControl>
@@ -74,10 +90,16 @@ const CartContentItem = ({ cartProduct }: CartContentItemProps) => {
 
           <SubtotalWrapper>
             <SubtotalLabel>SUBTOTAL</SubtotalLabel>
-            <span>
+            <SubTotalValue>
               {formatCurrency(cartProduct.quantity * cartProduct.price)}
-            </span>
+            </SubTotalValue>
           </SubtotalWrapper>
+
+          <ContainerDesktop>
+            <button onClick={handleRemoveProductClick}>
+              <DeleteIcon width={16} height={18} />
+            </button>
+          </ContainerDesktop>
         </QuantityWrapper>
       </Details>
     </Container>

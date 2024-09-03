@@ -11,8 +11,8 @@ const Container = styled.div`
 
 const CartText = styled.div`
   display: none;
-
-  @media (min-width: 1024px) {
+  font-size: 14px;
+  @media (min-width: 1440px) {
     display: flex;
   }
 `;

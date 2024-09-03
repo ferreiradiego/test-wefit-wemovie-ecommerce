@@ -1,7 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const dissolve = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
 
 const EmptyCartContainer = styled.div`
   background-color: white;
@@ -11,15 +20,16 @@ const EmptyCartContainer = styled.div`
   padding: 64px;
   gap: 24px;
   align-items: center;
+  animation: ${dissolve} 300ms ease-out;
 `;
 
 const EmptyCartMessage = styled.h1`
-  font-size: 1.25rem;
+  font-size: 20px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 700;
   color: #2f2e41;
-  tracking-normal: normal;
-  line-height: normal;
+  line-height: 27.24px;
+  text-align: center;
 `;
 
 const ImageWrapper = styled.div`
@@ -38,6 +48,11 @@ const ReloadLink = styled(Link)`
   align-items: center;
   justify-content: center;
   width: 157px;
+  transition: background-color 300ms ease-out;
+  
+  &:hover {
+    background-color: #0073a1;
+  }
 `;
 
 export { EmptyCartContainer, EmptyCartMessage, ImageWrapper, ReloadLink };
