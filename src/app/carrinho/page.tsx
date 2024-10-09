@@ -1,33 +1,28 @@
 "use client";
 
 import CartContent from "@/components/CartContent";
-import { CartContext } from "@/context/cart";
 import Image from "next/image";
-import { useContext } from "react";
-import {
-  EmptyCartContainer,
-  EmptyCartMessage,
-  ImageWrapper,
-  ReloadLink,
-} from "./styles";
+import { EmptyStateContainer, EmptyStateMessage, ReloadLink } from "./styles";
+import useCart from "@/hooks/useCart";
 
 const Cart = () => {
-  const { cartIsEmpty } = useContext(CartContext);
+  const { cartIsEmpty } = useCart();
 
   if (cartIsEmpty) {
     return (
-      <EmptyCartContainer>
-        <EmptyCartMessage>Parece que não há nada por aqui :(</EmptyCartMessage>
-        <ImageWrapper>
-          <Image
-            src="/assets/empty-cart.svg"
-            alt="Carrinho vazio"
-            width={178.63}
-            height={264}
-          />
-        </ImageWrapper>
+      <EmptyStateContainer>
+        <EmptyStateMessage>
+          Parece que não há nada por aqui :(
+        </EmptyStateMessage>
+        <Image
+          src="/assets/empty-cart.svg"
+          alt="Carrinho vazio"
+          width={178.63}
+          height={264}
+          priority
+        />
         <ReloadLink href={"/"}>Recarregar página</ReloadLink>
-      </EmptyCartContainer>
+      </EmptyStateContainer>
     );
   }
 

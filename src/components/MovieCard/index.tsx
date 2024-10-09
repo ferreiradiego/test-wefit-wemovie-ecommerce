@@ -4,8 +4,6 @@ import { Movie } from "@/types/movie";
 import Image from "next/image";
 import { formatCurrency } from "@/utils/price";
 import Button from "../Button";
-import { useContext } from "react";
-import { CartContext } from "@/context/cart";
 import {
   CardContainer,
   CardContent,
@@ -13,14 +11,16 @@ import {
   Price,
   Title,
 } from "./styles";
+import useCart from "@/hooks/useCart";
+import { ButtonContent, ButtonText } from "../Button/styles";
+import AddCartIcon from "../icons/AddCartIcon";
 
 interface MovieCardProps {
   movie: Movie;
 }
 
 const MovieCard = ({ movie }: MovieCardProps) => {
-  const { addProductToCart } = useContext(CartContext);
-  const { products } = useContext(CartContext);
+  const { addProductToCart, products } = useCart();
 
   const isMovieAlreadyOnCart = products.some(
     (cartProduct) => cartProduct.id === movie.id
@@ -41,16 +41,27 @@ const MovieCard = ({ movie }: MovieCardProps) => {
     <CardContainer>
       <CardContent>
         <CardDetails>
-          <Image src={movie.image} alt={movie.title} width={200} height={300} />
+          <Image
+            src={movie.image}
+            alt={movie.title}
+            width={147}
+            height={188}
+            priority
+          />
           <Title>{movie.title}</Title>
           <Price>{formatCurrency(movie.price)}</Price>
         </CardDetails>
+
         <Button
-          text="adicionar ao carrinho"
-          label={quantityInCart}
-          variant={isMovieAlreadyOnCart ? "success" : "primary"}
           onClick={addProductToCartClick}
-        />
+          state={isMovieAlreadyOnCart ? "selected" : "empty"}
+        >
+          <ButtonContent>
+            <AddCartIcon />
+            <span>{quantityInCart}</span>
+          </ButtonContent>
+          <ButtonText>ADICIONAR AO CARRINHO</ButtonText>
+        </Button>
       </CardContent>
     </CardContainer>
   );

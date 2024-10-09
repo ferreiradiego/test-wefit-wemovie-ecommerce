@@ -11,13 +11,19 @@ const Container = styled.div`
   padding: 64px;
   gap: 24px;
   align-items: center;
+  width: 100%;
+  height: auto;
+
+  @media (min-width: 1440px) {
+    height: 100%;
+  }
 `;
 
 const Message = styled.h1`
-  font-size: 1.25rem;
+  font-size: 20px;
   text-align: center;
   font-weight: bold;
-  color: #2f2e41;
+  color: var(--text-primary);
   line-height: normal;
 `;
 
@@ -27,9 +33,9 @@ const ImageWrapper = styled.div`
 `;
 
 const BackLink = styled(Link)`
-  background-color: #009edd;
+  background-color: var(--button-bg-empty);
   font-weight: bold;
-  font-size: 0.75rem;
+  font-size: 12px;
   border-radius: 4px;
   padding: 8px;
   height: 40px;
@@ -38,9 +44,9 @@ const BackLink = styled(Link)`
   justify-content: center;
   width: 157px;
   transition: background-color 300ms ease-out;
-  
+
   &:hover {
-    background-color: #0073a1;
+    background-color: var(--button-bg-hover);
   }
 `;
 

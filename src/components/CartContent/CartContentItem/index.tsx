@@ -1,15 +1,12 @@
 import { formatCurrency } from "@/utils/price";
 import Image from "next/image";
 
-import { useContext } from "react";
-import { CartContext } from "@/context/cart";
-import CartProduct from "@/context/cart-product";
 import DeleteIcon from "@/components/icons/DeleteIcon";
 import MinusIcon from "@/components/icons/MinusIcon";
 import PlusIcon from "@/components/icons/PlusIcon";
 import {
-  Container,
-  ContainerDesktop,
+  CartItemContainer,
+  CartItemContainerDesktop,
   Details,
   ImageWrapper,
   ProductDetailsDesktop,
@@ -25,6 +22,8 @@ import {
   TitlePriceDesktopWrapper,
   TitlePriceMobileWrapper,
 } from "./styles";
+import useCart from "@/hooks/useCart";
+import { CartProduct } from "@/types";
 
 interface CartContentItemProps {
   cartProduct: CartProduct;
@@ -35,7 +34,7 @@ const CartContentItem = ({ cartProduct }: CartContentItemProps) => {
     decreaseProductQuantity,
     increaseProductQuantity,
     removeProductFromCart,
-  } = useContext(CartContext);
+  } = useCart();
 
   const handleDecreaseQuantityClick = () => {
     decreaseProductQuantity(cartProduct.id);
@@ -51,10 +50,15 @@ const CartContentItem = ({ cartProduct }: CartContentItemProps) => {
   };
 
   return (
-    <Container>
+    <CartItemContainer>
       <ProductDetailsMobile>
         <ImageWrapper>
-          <Image src={cartProduct.image} alt={cartProduct.title} fill={true} />
+          <Image
+            src={cartProduct.image}
+            alt={cartProduct.title}
+            fill={true}
+            sizes="(min-width: 1440px) 91px, 64px"
+          />
         </ImageWrapper>
       </ProductDetailsMobile>
 
@@ -73,7 +77,7 @@ const CartContentItem = ({ cartProduct }: CartContentItemProps) => {
           <Title>{cartProduct.title}</Title>
           <ProductPrice>{formatCurrency(cartProduct.price)}</ProductPrice>
           <button onClick={handleRemoveProductClick}>
-            <DeleteIcon width={16} height={18} />
+            <DeleteIcon />
           </button>
         </TitlePriceMobileWrapper>
 
@@ -95,14 +99,14 @@ const CartContentItem = ({ cartProduct }: CartContentItemProps) => {
             </SubTotalValue>
           </SubtotalWrapper>
 
-          <ContainerDesktop>
+          <CartItemContainerDesktop>
             <button onClick={handleRemoveProductClick}>
-              <DeleteIcon width={16} height={18} />
+              <DeleteIcon />
             </button>
-          </ContainerDesktop>
+          </CartItemContainerDesktop>
         </QuantityWrapper>
       </Details>
-    </Container>
+    </CartItemContainer>
   );
 };
 

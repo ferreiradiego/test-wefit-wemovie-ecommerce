@@ -1,6 +1,8 @@
 "use server";
 
-import CartProduct from "@/context/cart-product";
+import { CartProduct } from "@/types";
+
+
 
 export const checkout = async (
   products: Array<CartProduct>

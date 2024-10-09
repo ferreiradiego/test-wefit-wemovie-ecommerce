@@ -1,24 +1,28 @@
 "use client";
 
-import { useContext } from "react";
-import CartDetails from "./CartDetails";
-import { CartIcon, CartLink, HeaderContainer, LogoLink } from "./styles";
-import { CartContext } from "@/context/cart";
+import CartIcon from "../icons/CartIcon";
+import {
+  CartItemsInfo,
+  CartLink,
+  CartText,
+  HeaderContainer,
+  ItemCount,
+  LogoLink,
+} from "./styles";
+import useCart from "@/hooks/useCart";
 
 const Header = () => {
-  const { cartIsEmpty } = useContext(CartContext);
+  const { cartIsEmpty, totalQuantity } = useCart();
 
   return (
     <HeaderContainer>
       <LogoLink href="/">WeMovies</LogoLink>
-      <CartLink href="/carrinho" disabled={cartIsEmpty}>
-        <CartDetails />
-        <CartIcon
-          src="assets/cart-icon.svg"
-          alt="Carrinho"
-          width={24}
-          height={21}
-        />
+      <CartLink href="/carrinho" $disabled={cartIsEmpty}>
+        <CartItemsInfo>
+          <CartText>Meu Carrinho</CartText>
+          <ItemCount>{totalQuantity} itens</ItemCount>
+        </CartItemsInfo>
+        <CartIcon />
       </CartLink>
     </HeaderContainer>
   );

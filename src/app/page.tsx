@@ -4,22 +4,22 @@ import { ErrorMessage, GridContainer } from "./styles";
 
 const fetchData = async (): Promise<Array<Movie> | null> => {
   try {
-    const response = await fetch("https://wefit-movies.vercel.app/api/movies");
+    const response = await fetch(`${process.env.API_URL as string}/movies`, {
+      cache: "no-store",
+    });
     const data = await response.json();
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    // throw new Error("Erro ao buscar os filmes");
+    // Used to simulate a slow connection
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+
     return data.products;
   } catch (error) {
-    // console.error("Ocorreu um erro ao buscar os filmes", error);
     return null;
   }
 };
 
 const Home = async () => {
   const movies = await fetchData();
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
-  // console.log(movies);
 
   if (!movies) {
     return (

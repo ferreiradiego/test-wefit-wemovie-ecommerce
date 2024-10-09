@@ -2,14 +2,14 @@
 
 import styled from "styled-components";
 
-const ContainerDesktop = styled.div`
+const CartItemContainerDesktop = styled.div`
   display: none;
   @media (min-width: 1440px) {
     display: flex;
   }
 `;
 
-const Container = styled.div`
+const CartItemContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
@@ -48,7 +48,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Details = styled.div`
-  color: #2f2e41;
+  color: var(--text-primary);
   font-weight: bold;
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@ const Details = styled.div`
 `;
 
 const TitlePriceWrapper = styled.div`
-  color: #2f2e41;
+  color: var(--text-primary);
   font-weight: bold;
   font-size: 14px;
 
@@ -83,10 +83,10 @@ const TitlePriceDesktopWrapper = styled(TitlePriceWrapper)`
   display: none;
 
   @media (min-width: 1440px) {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
     gap: 8px;
+    justify-content: center;
   }
 `;
 
@@ -98,7 +98,8 @@ const Title = styled.span`
 
 const ProductPrice = styled.span`
   width: 100%;
-  text-align: center;
+  text-align: start;
+  font-size: 16px;
 `;
 
 const QuantityWrapper = styled.div`
@@ -122,12 +123,13 @@ const QuantityControl = styled.div`
 
 const Quantity = styled.span`
   display: block;
+  align-content: center;
   font-size: 14px;
   height: 26px;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
   width: 100%;
-  color: #2f2e41;
+  color: var(--text-primary);
   font-weight: normal;
   text-align: center;
 
@@ -147,9 +149,10 @@ const SubtotalWrapper = styled.div`
   }
 `;
 
-const SubtotalLabel = styled.span`
-  color: #999999;
-  font-size: 0.75rem;
+const SubtotalLabel = styled.div`
+  color: var(--text-light-gray);
+  font-size: 12px;
+
   text-transform: uppercase;
   display: none;
   text-align: end;
@@ -159,9 +162,10 @@ const SubtotalLabel = styled.span`
   }
 `;
 
-const SubTotalValue = styled.span`
+const SubTotalValue = styled.div`
   min-width: 74px;
   text-align: end;
+
   @media (min-width: 1440px) {
     width: 100%;
     text-align: start;
@@ -169,7 +173,7 @@ const SubTotalValue = styled.span`
 `;
 
 export {
-  Container,
+  CartItemContainer,
   ImageWrapper,
   Details,
   TitlePriceWrapper,
@@ -183,7 +187,7 @@ export {
   ProductDetailsDesktop,
   TitlePriceMobileWrapper,
   TitlePriceDesktopWrapper,
-  ContainerDesktop,
+  CartItemContainerDesktop,
   SubTotalValue,
   ProductPrice,
 };

@@ -8,8 +8,6 @@ const Spinner = () => {
       quality={100}
       width={62}
       height={62}
-      priority={true}
-      color="#fff"
     />
   );
 };

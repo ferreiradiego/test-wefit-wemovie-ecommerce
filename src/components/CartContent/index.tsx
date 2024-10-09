@@ -1,30 +1,27 @@
 "use client";
 
-import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { formatCurrency } from "@/utils/price";
-import { CartContext } from "@/context/cart";
 import { checkout } from "@/actions/checkout";
 import {
-  CheckoutButton,
-  Container,
+  CartContainer,
   DeleteButton,
   Divider,
-  Footer,
-  Header,
-  HeaderItem,
+  CartFooter,
+  CartHeader,
+  CartHeaderItem,
   TotalAmount,
   TotalContainer,
   TotalLabel,
 } from "./styles";
 import CartContentItem from "./CartContentItem";
-import styled from "styled-components";
+import useCart from "@/hooks/useCart";
+import Button from "../Button";
+import { ButtonText } from "../Button/styles";
 
-interface CartContentProps {}
-
-const CartContent = ({}: CartContentProps) => {
+const CartContent = () => {
   const router = useRouter();
-  const { products, totalPrice, clearCart } = useContext(CartContext);
+  const { products, totalPrice, clearCart } = useCart();
 
   const handleCheckout = async () => {
     const success = await checkout(products);
@@ -36,13 +33,13 @@ const CartContent = ({}: CartContentProps) => {
   };
 
   return (
-    <Container>
-      <Header>
-        <HeaderItem>PRODUTO</HeaderItem>
-        <HeaderItem>QTD</HeaderItem>
-        <HeaderItem>SUBTOTAL</HeaderItem>
+    <CartContainer>
+      <CartHeader>
+        <CartHeaderItem>PRODUTO</CartHeaderItem>
+        <CartHeaderItem>QTD</CartHeaderItem>
+        <CartHeaderItem>SUBTOTAL</CartHeaderItem>
         <DeleteButton />
-      </Header>
+      </CartHeader>
 
       {products.map((product) => (
         <CartContentItem key={product.id} cartProduct={product} />
@@ -50,16 +47,16 @@ const CartContent = ({}: CartContentProps) => {
 
       <Divider />
 
-      <Footer>
-        <CheckoutButton onClick={handleCheckout}>
-          Finalizar pedido
-        </CheckoutButton>
+      <CartFooter>
+        <Button onClick={handleCheckout}>
+          <ButtonText>FINALIZAR PEDIDO</ButtonText>
+        </Button>
         <TotalContainer>
           <TotalLabel>TOTAL</TotalLabel>
           <TotalAmount>{formatCurrency(totalPrice)}</TotalAmount>
         </TotalContainer>
-      </Footer>
-    </Container>
+      </CartFooter>
+    </CartContainer>
   );
 };
 

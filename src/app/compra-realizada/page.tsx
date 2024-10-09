@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { BackLink, Container, ImageWrapper, Message } from "./styles";
 
 const Checkout = () => {

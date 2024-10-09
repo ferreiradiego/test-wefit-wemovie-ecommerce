@@ -2,19 +2,28 @@
 
 import styled from "styled-components";
 
-const Container = styled.div`
+const CartContainer = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  padding: 24px;
-  gap: 24px;
+  padding: 16px;
+  gap: 21px;
   border-radius: 4px;
+  width: 100%;
+  height: auto;
+
+  @media (min-width: 1440px) {
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 24px;
+    gap: 24px;
+  }
 `;
 
-const Header = styled.div`
-  color: #999999;
+const CartHeader = styled.div`
+  color: var(--text-light-gray);
   font-weight: bold;
-  font-size: 0.875rem;
+  font-size: 14px;
   display: none;
   justify-content: space-between;
   width: 100%;
@@ -30,7 +39,7 @@ const Header = styled.div`
   }
 `;
 
-const HeaderItem = styled.span`
+const CartHeaderItem = styled.span`
   font-size: 14px;
   font-weight: 700;
   width: 100%;
@@ -44,11 +53,12 @@ const DeleteButton = styled.span`
 `;
 
 const Divider = styled.hr`
-  background-color: #999999;
+  background-color: var(--text-light-gray);
   height: 1px;
+  border: none;
 `;
 
-const Footer = styled.div`
+const CartFooter = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column-reverse;
@@ -56,22 +66,6 @@ const Footer = styled.div`
 
   @media (min-width: 1440px) {
     flex-direction: row;
-  }
-`;
-
-const CheckoutButton = styled.button`
-  text-transform: uppercase;
-  background-color: #009edd;
-  font-weight: 700;
-  font-size: 14px;
-  border-radius: 4px;
-  padding: 8px;
-  height: 40px;
-  text-align: center;
-  transition: background-color 300ms ease-out;
-
-  &:hover {
-    background-color: #0073a1;
   }
 `;
 
@@ -83,7 +77,7 @@ const TotalContainer = styled.div`
 `;
 
 const TotalLabel = styled.span`
-  color: #999999;
+  color: var(--text-light-gray);
   font-weight: 700;
   font-size: 14px;
   text-align: center;
@@ -91,9 +85,8 @@ const TotalLabel = styled.span`
 
 const TotalAmount = styled.span`
   font-size: 24px;
-  color: #2f2e41;
+  color: var(--text-primary);
   font-weight: bold;
-  /* align-items: center; */
 
   @media (min-width: 1440px) {
     width: 130.79px;
@@ -102,14 +95,13 @@ const TotalAmount = styled.span`
 `;
 
 export {
-  Container,
-  Header,
+  CartContainer,
+  CartHeader,
   Divider,
-  Footer,
-  CheckoutButton,
+  CartFooter,
   TotalContainer,
   TotalLabel,
   TotalAmount,
-  HeaderItem,
-  DeleteButton
+  CartHeaderItem,
+  DeleteButton,
 };

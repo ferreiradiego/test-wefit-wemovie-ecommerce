@@ -8,12 +8,19 @@ const CardContainer = styled.div`
   flex-direction: column;
   padding: 16px;
   border-radius: 4px;
+  max-width: 349.33px;
+  width: 100%;
+  height: 100%;
+  justify-self: center;
+  align-items: center;
 `;
 
 const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  height: 100%;
+  width: 100%;
 `;
 
 const CardDetails = styled.div`
@@ -26,12 +33,20 @@ const CardDetails = styled.div`
   text-align: center;
 `;
 
-const Title = styled.p`
-  color: #333333;
+const Title = styled.span`
+  color: var(--text-secondary);
+  height: 18px;
+  text-align: center;
+  width: 100%;
+  font-size: 12px;
+  align-content: center;
+  line-height: 16.34px;
 `;
 
-const Price = styled.p`
-  color: #2f2e41;
+const Price = styled.span`
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 700;
 `;
 
 export { CardContainer, CardContent, CardDetails, Title, Price };

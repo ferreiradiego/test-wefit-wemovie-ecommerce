@@ -1,54 +1,56 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 import { ButtonProps } from "./types";
 
-const getBackgroundColor = (variant: ButtonProps["variant"]) => {
-  switch (variant) {
-    case "success":
-      return "#039B00";
-    case "primary":
-    default:
-      return "#009EDD";
-  }
-};
+const ButtonContainer = styled.button<{ $state: ButtonProps["state"] }>`
+  background-color: var(--button-bg-empty);
+  font-family: inherit;
 
-const getHoverBackgroundColor = (variant: ButtonProps["variant"]) => {
-  switch (variant) {
-    case "success":
-      return "#039B00";
-    case "primary":
-    default:
-      return "#0073A1";
-  }
-};
+  ${({ $state }) =>
+    $state === "selected" &&
+    css`
+      background-color: var(--button-bg-selected);
+    `}
 
-const StyledButton = styled.button<{ variant: ButtonProps["variant"] }>`
-  text-transform: uppercase;
+  display: flex;
   gap: 12px;
-  font-weight: bold;
-  font-size: 0.75rem;
-  color: white;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 8px;
   height: 40px;
+  transition: background-color 300ms ease-out;
+
+  ${({ $state }) =>
+    $state === "empty" &&
+    css`
+      &:hover {
+        background-color: var(--button-bg-hover);
+      }
+    `}
+`;
+
+const ButtonContent = styled.span`
+  width: 25px;
+  height: 17px;
+  font-weight: regular;
+  font-size: 12px;
+  line-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const ButtonText = styled.span`
+  font-style: normal;
+  font-size: 12px;
+  width: 157px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  background-color: ${({ variant }) => getBackgroundColor(variant)};
-  transition: background-color 300ms ease-out;
-
-  &:hover {
-    background-color: ${({ variant }) => getHoverBackgroundColor(variant)};
-  }
 `;
 
-const LabelContainer = styled.div`
-  text-align: center;
-  display: flex;
-  font-weight: normal;
-`;
-
-const Label = styled.span`
-  margin-left: 3px;
-`;
-
-export { StyledButton, LabelContainer, Label };
+export { ButtonContainer, ButtonText, ButtonContent };
