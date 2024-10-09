@@ -1,14 +1,4 @@
-## Considerações para melhoria do Desenvolvimento
-
-Abaixo, listo algumas opções (que conheço e utilizo) para agilizar o desenvolvimento e facilitar a implementação de novas features no futuro:
-
-**Estilização:**
-
-* **TailwindCSS (https://tailwindcss.com/)**: Recomendo o uso do TailwindCSS para aumentar a velocidade de desenvolvimento. A estilização é realizada diretamente no componente, utilizando diversas classes e breakpoints pré-definidos, que podem ser ajustados de acordo com os requisitos do projeto. Essa abordagem torna a responsividade mais eficiente e intuitiva.
-
-**Componentes Utilitários:**
-
-* **Shadcn/UI (https://ui.shadcn.com/)**: Para a criação de componentes utilitários, como botões e inputs, a biblioteca Shadcn/UI oferece uma gama interessante de componentes padrões para aplicações web. Esses componentes são totalmente personalizáveis, permitindo adaptá-los aos requisitos específicos do projeto.
+## (EM CONSTRUÇÃO)
 
 ---
 
